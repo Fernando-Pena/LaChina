@@ -7,7 +7,7 @@ import android.view.View;
 
 public class LaChina {
 
-    public static void chinificar(View view, final boolean multichina){
+    public static void chinificar(View view){
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
