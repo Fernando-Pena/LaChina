@@ -4,7 +4,7 @@
 
 ## Import
 
-1. in `build.gradle` add:
+In `build.gradle` add:
 ```
     repositories {
         maven { url "https://jitpack.io" }
