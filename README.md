@@ -1,16 +1,21 @@
+#LaChina
 
-repositories {
-    maven { url "https://jitpack.io" }
-}
+## Import
 
-dependencies {
-  compile 'com.github.Fernando-Pena:LaChina:v1.3'
-}
+1. in `build.gradle` add:
+```
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+    
+    dependencies {
+        compile 'com.github.Fernando-Pena:LaChina:v1.3'
+    }
+```
+
+##Usage
+
+`LaChina.play(Context)` plays `LaChina` with the max possible volume (overriding mute/vibration/low volume)
 
 
-//Plays LaChina with max volume (overriding mute/vibration/low volume)
-LaChina.play(Context);
-
-
-//Sets an OnClicklistener with LaChina.Play() inside OnClick of View
-LaChina.cinificar(View);
+`LaChina.chinificar(View)` sets an `OnClicklistener` in `View` with `LaChina.Play()` inside the `OnClick`
