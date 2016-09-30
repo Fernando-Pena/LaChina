@@ -1,6 +1,7 @@
 package com.china;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -23,6 +24,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class LaChina {
+
+    public static final int CODE_WRITE_SETTINGS_PERMISSION = 100;
 
     public static void chinificate(View view) {
         view.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +101,11 @@ public class LaChina {
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                     Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
                     intent.setData(Uri.parse("package:" + context.getPackageName()));
-                    context.startActivity(intent);
+                    if (context instanceof Activity) {
+                        ((Activity) context).startActivityForResult(intent, CODE_WRITE_SETTINGS_PERMISSION);
+                    } else {
+                        context.startActivity(intent);
+                    }
                 }
             }
         } catch (Throwable t) {
