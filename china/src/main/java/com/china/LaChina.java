@@ -1,5 +1,6 @@
 package com.china;
 
+import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -70,6 +71,7 @@ public class LaChina {
 
             fos.close();
         } catch (IOException io) {
+            io.printStackTrace();
         }
         ContentValues values = new ContentValues();
         values.put(MediaStore.MediaColumns.DATA, f.getAbsolutePath());
@@ -90,10 +92,14 @@ public class LaChina {
             if (Build.VERSION.SDK_INT >= 23 && Settings.System.canWrite(context)) {
                 RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, newUri);
                 Settings.System.putString(mCr, Settings.System.RINGTONE, newUri.toString());
+                AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                am.setStreamVolume(AudioManager.STREAM_RING, am.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
             } else {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-                intent.setData(Uri.parse("package:" + context.getPackageName()));
-                context.startActivity(intent);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                    intent.setData(Uri.parse("package:" + context.getPackageName()));
+                    context.startActivity(intent);
+                }
             }
         } catch (Throwable t) {
             t.printStackTrace();
