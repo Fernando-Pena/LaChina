@@ -1,4 +1,4 @@
-#LaChina
+# LaChina
 
 [China preview](https://clyp.it/j4j003gx)
 
@@ -15,7 +15,7 @@ In `build.gradle` add:
     }
 ```
 
-##Usage
+## Usage
 
 `LaChina.play(Context)` plays `LaChina` with the max possible volume (overriding mute/vibration/low volume)
 
